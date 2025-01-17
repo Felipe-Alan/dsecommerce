@@ -1,16 +1,29 @@
 package com.alandev.dsecommerce.dto;
 
 import com.alandev.dsecommerce.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
     private Long id;
+
+    @Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+
+    @Positive(message = "O Preço deve ser positivo")
     private Double price;
+
+    @Size(min = 10, message = "Descrição precisa ter no minímo 10 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String description;
+
     private String imgUrl;
 
-    public ProductDTO() {}
+    public ProductDTO() {
+    }
 
     public ProductDTO(Long id, String name, Double price, String description, String imgUrl) {
         this.id = id;
